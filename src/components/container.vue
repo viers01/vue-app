@@ -1,19 +1,15 @@
 <template>
 	<div class="hello">
 		<input type="number" v-model.number="first" />
-		<input type="number" v-model.number="second" @input="checkInfinity"/>
+		<input type="number" v-model.number="second" @input="checkInfinity" />
 		<h2>Результат: {{ result || "введите числа" }}</h2>
-		<button @click="summ">+</button>
-		<button @click="subtract">-</button>
-		<button @click="multiply(first, second)">*</button>
-		<button @click="result = first / second" v-if="!second" disabled>
-			/
-		</button>
-		<button @click="result = first / second" v-else>
-			/
-		</button>
-		<button @click="result = first ** second">Возвести в степень</button>
-		<button @click="result = first % second">Целочисленное деление</button>
+		<button @click="calcutale('+')">+</button>
+		<button @click="calcutale('-')">-</button>
+		<button @click="calcutale('*')">*</button>
+		<button @click="calcutale('/')" v-if="!second" disabled>/</button>
+		<button @click="calcutale('/')" v-else>/</button>
+		<button @click="calcutale('**')">Возвести в степень</button>
+		<button @click="calcutale('%')">Целочисленное деление</button>
 	</div>
 </template>
 
@@ -32,8 +28,30 @@ export default {
 		};
 	},
 	methods: {
-		isEmpty(){
-			this.second === 0? true: false
+		calcutale(action = "+") {
+			switch (action) {
+				case "+":
+					this.summ();
+					break;
+				case "-":
+					this.subtract();
+					break;
+				case "*":
+					this.multiply();
+					break;
+				case "/":
+					this.devide();
+					break;
+				case "**":
+					this.exponent();
+					break;
+				case "%":
+					this.division();
+					break;
+			}
+		},
+		isEmpty() {
+			this.second === 0 ? true : false;
 		},
 		summ() {
 			this.result = this.first + this.second;
@@ -44,8 +62,14 @@ export default {
 		subtract() {
 			this.result = this.first - this.second;
 		},
-		multiply(first, second) {
-			this.result = first * second;
+		multiply() {
+			this.result = this.first * this.second;
+		},
+		division() {
+			this.result = this.first % this.second;
+		},
+		exponent() {
+			this.result = this.first ** this.second;
 		},
 	},
 };
