@@ -37,7 +37,8 @@ export default {
 		sendPage(e) {
 			e.preventDefault();
 			const currPage = e.target.getAttribute("data-page");
-			this.$emit("setPage", currPage);
+			this.$store.commit("pageChoise", currPage);
+			this.$store.commit("setPaymentsRange");
 		},
 	},
 	computed: {},

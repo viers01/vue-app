@@ -10,7 +10,7 @@
 					id="totalcost"
 					placeholder="Введите число"
 				/>
-				<br>
+				<br />
 			</label>
 			<label for="date">
 				Введите дату
@@ -21,7 +21,7 @@
 					placeholder="Введите дату"
 				/>
 			</label>
-			<br>
+			<br />
 			<label for="category">
 				На что потрачено
 				<input
@@ -31,8 +31,8 @@
 					v-model="category"
 				/>
 			</label>
-			<br>
-			<button @click="sendData" type="submit">ADD</button>
+			<br />
+			<button @click="addNewPayment" type="submit">ADD</button>
 		</form>
 	</section>
 </template>
@@ -44,33 +44,35 @@ export default {
 		return {
 			showPanel: true,
 			value: 0,
-			category: '',
+			category: "",
 			date: "",
 		};
 	},
 	methods: {
-		sendData(e) {
+		addNewPayment(e) {
 			e.preventDefault();
 			const data = {
 				value: this.value,
 				category: this.category,
 				date: this.date || this.currentDate,
-				id: Date.now()
+				id: Date.now(),
 			};
-			this.$emit("addNewPayment", data);
+			this.$store.commit("addPayment", data);
+			this.$store.commit("setPaymentsRange");
+
 		},
 	},
 	computed: {
-		currentDate(){
-			const dateCurr = new Date()
+		currentDate() {
+			const dateCurr = new Date();
 			const d = dateCurr.getDay();
 			const m = dateCurr.getMonth() + 1;
 			const y = dateCurr.getFullYear();
 
 			let date = new Date(y, m, d);
 			let formatter1 = new Intl.DateTimeFormat("ru");
-			return (formatter1.format(date))
-		}
+			return formatter1.format(date);
+		},
 	},
 };
 </script>

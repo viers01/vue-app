@@ -1,7 +1,7 @@
 <template>
 	<section>
 		Список трат:
-		<SpendItem v-for="item of items" :key="item.id" :item="item" />
+		<SpendItem v-for="item of filteredItems" :key="item.id" :item="item" />
 	</section>
 </template>
 
@@ -13,7 +13,7 @@ export default {
 		SpendItem,
 	},
 	props: {
-		items: {
+		filteredItems: {
 			type: Array,
 			required: true,
 		},
