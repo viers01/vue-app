@@ -26,13 +26,6 @@ export default {
 		return {};
 	},
 	methods: {
-		fetchData() {
-			return [
-				{ value: 25, category: "shop", id: 1 },
-				{ value: 19, category: "cinema", id: 2 },
-				{ value: 199, category: "food", id: 3 },
-			];
-		},
 	},
 	computed: {
 		getListItems() {
@@ -46,10 +39,11 @@ export default {
 		},
 	},
 	mounted() {
-		this.$store.commit("setPaymentsListData", this.fetchData());
-		this.$store.commit("pageChoise", 1);
-		this.$store.commit("setPaymentsRange")
+		this.$store.dispatch('fetchData')
+		// this.$store.commit("pageChoise", 1);
 	},
+	created(){
+	}
 };
 </script>
 
