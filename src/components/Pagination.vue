@@ -2,14 +2,16 @@
 	<section>
 		Страницы:
 		<ul>
-			<a
-				href=""
-				v-for="page in this.getPageNumber()"
+			<li @click="onClick(currPage - 1)">-</li>
+			<li
+				v-for="page in getPageNumber"
 				:key="page"
-				@click="sendPage"
-				:data-page="page"
-				>{{ page }}
-			</a>
+				:class="{ active: currPage == page }"
+				@click="onClick(page)"
+			>
+				{{ page }}
+			</li>
+			<li @click="onClick(currPage + 1)">+</li>
 		</ul>
 	</section>
 </template>
@@ -23,26 +25,32 @@ export default {
 		};
 	},
 	props: {
-		length: {
-			type: Number,
-		},
+		length: Number,
+		currPage: Number,
+		n: Number,
 	},
 	render() {
 		return {};
 	},
 	methods: {
-		getPageNumber() {
-			return Math.ceil(this.length / 5);
-		},
-		sendPage(e) {
-			e.preventDefault();
-			const currPage = e.target.getAttribute("data-page");
-			this.$store.commit("pageChoise", currPage);
-			this.$store.commit("setPaymentsRange");
+		onClick(page) {
+			this.$emit('pagination', page)
 		},
 	},
-	computed: {},
+	computed: {
+		getPageNumber() {
+			return Math.ceil(this.length / this.n);
+		},
+	},
 };
 </script>
 
-<style></style>
+<style>
+ul {
+	display: flex;
+	list-style-type: none;
+	gap: 5px;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+</style>
