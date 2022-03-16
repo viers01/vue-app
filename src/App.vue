@@ -1,31 +1,45 @@
 <template>
 	<div id="app">
-		<ContentList/>
+		<header>
+			<button @click="showModal = true">Добавить</button>
+		</header>
+		<ContentList />
+		<ModalWindow
+			:settings="settings"
+			v-if="showModal"
+			@close="showModal = false"
+		/>
 	</div>
 </template>
 
 <script>
 import ContentList from "./components/ContentList.vue";
-import {mapActions} from "vuex";
+import ModalWindow from "./components/ModalWindow.vue";
+import { mapActions } from "vuex";
 
 export default {
 	name: "App",
 	components: {
-		ContentList
+		ContentList,
+		ModalWindow,
 	},
 	data: function () {
-		return {};
+		return {
+			showModal: false,
+			settings: {
+				header: "Auth",
+				content: "AddForm",
+			},
+		};
 	},
-	methods: {
-	},
+	methods: {},
 	computed: {
-		...mapActions(["GET_DATA_FROM_API"])
+		...mapActions(["GET_DATA_FROM_API"]),
 	},
 	mounted() {
 		this.GET_DATA_FROM_API;
 	},
-	created(){
-	}
+	created() {},
 };
 </script>
 

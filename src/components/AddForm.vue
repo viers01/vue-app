@@ -1,7 +1,6 @@
 <template>
 	<section>
-		<button v-on:click="showPanel = !showPanel">ADD NEW COST+</button>
-		<form action="" v-show="showPanel">
+		<form>
 			<label for="totalcost">
 				Сколько потрачено
 				<input
@@ -42,7 +41,6 @@ export default {
 	name: "AddForm",
 	data() {
 		return {
-			showPanel: true,
 			value: 0,
 			category: "",
 			date: "",

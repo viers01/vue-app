@@ -7,13 +7,18 @@ export default new Vuex.Store({
 		paymentsList: [],
 	},
 	mutations: {
-		SET_DATA_TO_STATE(state, payload) {
-			state.paymentsList = payload;
+		SET_DATA_TO_STATE(state, {data}) {
+			state.paymentsList = data.data;
 		},
 	},
 	actions: {
 		GET_DATA_FROM_API({ commit }) {
-			fetch("https://jsonplaceholder.typicode.com/todos/")
+			fetch("http://test.uralmedias.ru/api/deals")
+				.then((data) => data.json())
+				.then((json) => commit("SET_DATA_TO_STATE", json))
+		},
+		ADD_PAYMENT_TO_DB({ commit }, payload) {
+			fetch("http://test.uralmedias.ru/api/deals")
 				.then((data) => data.json())
 				.then((json) => commit("SET_DATA_TO_STATE", json))
 		},

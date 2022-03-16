@@ -34,7 +34,7 @@ export default {
 	},
 	methods: {
 		onClick(page) {
-			this.$emit('pagination', page)
+			this.$emit("pagination", page);
 		},
 	},
 	computed: {
@@ -45,12 +45,15 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 ul {
 	display: flex;
 	list-style-type: none;
 	gap: 5px;
 	flex-wrap: wrap;
 	justify-content: center;
+}
+.active {
+	color: red;
 }
 </style>

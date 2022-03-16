@@ -1,8 +1,5 @@
 <template>
 	<div>
-		<header>
-			<AddForm />
-		</header>
 		<Pagination
 			:length="GET_PAYMENT_LIST.length"
 			:n="n"
@@ -14,9 +11,10 @@
 </template>
 
 <script>
-import AddForm from "./AddForm.vue";
+// import AddForm from "./AddForm.vue";
 import Dashboard from "./Dashboard.vue";
 import Pagination from "./Pagination.vue";
+
 import { mapGetters } from "vuex";
 export default {
 	name: "ContentList",
@@ -28,8 +26,8 @@ export default {
 	},
 	components: {
 		Dashboard,
-		AddForm,
 		Pagination,
+		
 	},
 	methods: {
 		setPage(page) {
@@ -48,4 +46,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+header{
+	border-bottom: 2px solid rgb(220, 220, 220);
+}
+</style>
