@@ -6,7 +6,7 @@
 			<li
 				v-for="page in getPageNumber"
 				:key="page"
-				:class="{ active: currentPage == page }"
+				:class="{ active: currentPage === page }"
 				@click="onClick(page)"
 			>
 				{{ page }}
@@ -19,18 +19,10 @@
 <script>
 export default {
 	name: "Pagination",
-	data() {
-		return {
-			countElements: 5,
-		};
-	},
 	props: {
 		length: Number,
 		currentPage: Number,
-		n: Number,
-	},
-	render() {
-		return {};
+		countElementsOnPage: Number,
 	},
 	methods: {
 		onClick(page) {
@@ -40,7 +32,7 @@ export default {
 	},
 	computed: {
 		getPageNumber() {
-			return Math.ceil(this.length / this.n);
+			return Math.ceil(this.length / this.countElementsOnPage);
 		},
 	},
 };
