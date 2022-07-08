@@ -2,16 +2,16 @@
 	<section>
 		Страницы:
 		<ul>
-			<li @click="onClick(currPage - 1)">-</li>
+			<li @click="onClick(currentPage - 1)">-</li>
 			<li
 				v-for="page in getPageNumber"
 				:key="page"
-				:class="{ active: currPage == page }"
+				:class="{ active: currentPage == page }"
 				@click="onClick(page)"
 			>
 				{{ page }}
 			</li>
-			<li @click="onClick(currPage + 1)">+</li>
+			<li @click="onClick(currentPage + 1)">+</li>
 		</ul>
 	</section>
 </template>
@@ -26,7 +26,7 @@ export default {
 	},
 	props: {
 		length: Number,
-		currPage: Number,
+		currentPage: Number,
 		n: Number,
 	},
 	render() {
