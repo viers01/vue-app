@@ -35,7 +35,7 @@ export default {
 		},
 	},
 	computed: {
-		...mapGetters(["GET_PAYMENT_LIST", "GET_TOTAL_PAYMENTS"]),
+		...mapGetters(["GET_PAYMENT_LIST", "GET_TOTAL_PAYMENTS", "GET_DATA_FROM_API"]),
 		setPaymentsRange() {
 			return this.GET_PAYMENT_LIST.slice(
 				this.currPage * this.countElementsOnPage - this.countElementsOnPage,
