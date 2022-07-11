@@ -43,6 +43,9 @@ export default {
 			);
 		},
 	},
+	mounted() {
+		this.GET_DATA_FROM_API;
+	},
 };
 </script>
 
