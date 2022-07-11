@@ -3,7 +3,7 @@
 		<Pagination
 			:length="GET_PAYMENT_LIST.length"
 			:n="n"
-			:currPage="currPage"
+			:currentPage="currentPage"
 			@pagination="setPage"
 		/>
 		<Dashboard :paymentsList="setPaymentsRange" />
