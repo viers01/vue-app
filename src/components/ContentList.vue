@@ -6,7 +6,7 @@
 			:currentPage="currentPage"
 			@pagination="setPage"
 		/>
-		<Dashboard :paymentsList="setPaymentsRange" />
+		<Dashboard :paymentsList="elements" />
 	</div>
 </template>
 
@@ -22,6 +22,7 @@ export default {
 		return {
 			countElementsOnPage: 10,
 			currentPage: 1,
+			elements: null,
 		};
 	},
 	components: {
@@ -30,18 +31,27 @@ export default {
 		
 	},
 	methods: {
-		setPage(page) {
-			this.currentPage = page;
+		async setPage(page) {
+			try {
+				const response = await this.getPaymentsRange(page)
+				
+				if(list){
+					this.elements = response
+					this.currentPage = page;
+				}
+			} catch (e) {
+			  console.log('Ошибка! ' + e);
+			}
+		},
+		getPaymentsRange(page) {
+			return this.GET_PAYMENT_LIST.slice(
+				page * this.countElementsOnPage - this.countElementsOnPage,
+				page * this.countElementsOnPage
+			);
 		},
 	},
 	computed: {
 		...mapGetters(["GET_PAYMENT_LIST", "GET_TOTAL_PAYMENTS", "GET_DATA_FROM_API"]),
-		setPaymentsRange() {
-			return this.GET_PAYMENT_LIST.slice(
-				this.currPage * this.countElementsOnPage - this.countElementsOnPage,
-				this.currPage * this.countElementsOnPage
-			);
-		},
 	},
 	mounted() {
 		this.GET_DATA_FROM_API;
