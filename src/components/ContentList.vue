@@ -2,7 +2,7 @@
 	<div>
 		<Pagination
 			:length="GET_PAYMENT_LIST.length"
-			:n="n"
+			:countElementsOnPage="countElementsOnPage"
 			:currentPage="currentPage"
 			@pagination="setPage"
 		/>
@@ -20,8 +20,8 @@ export default {
 	name: "ContentList",
 	data() {
 		return {
-			n: 10,
-			currPage: 1,
+			countElementsOnPage: 10,
+			currentPage: 1,
 		};
 	},
 	components: {
@@ -31,15 +31,15 @@ export default {
 	},
 	methods: {
 		setPage(page) {
-			this.currPage = page;
+			this.currentPage = page;
 		},
 	},
 	computed: {
 		...mapGetters(["GET_PAYMENT_LIST", "GET_TOTAL_PAYMENTS"]),
 		setPaymentsRange() {
 			return this.GET_PAYMENT_LIST.slice(
-				this.currPage * this.n - this.n,
-				this.currPage * this.n
+				this.currPage * this.countElementsOnPage - this.countElementsOnPage,
+				this.currPage * this.countElementsOnPage
 			);
 		},
 	},
