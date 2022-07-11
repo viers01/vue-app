@@ -36,10 +36,6 @@ export default {
 	computed: {
 		...mapActions(["GET_DATA_FROM_API"]),
 	},
-	mounted() {
-		this.GET_DATA_FROM_API;
-	},
-	created() {},
 };
 </script>
 
